@@ -1,0 +1,90 @@
+@import '../../../utils/styleVars.scss';
+
+.Label, .Input {
+    display: block;
+}
+
+.Label{
+    color: $gray-violet;
+    padding-bottom: 0.5rem;
+    &_dark{
+        color: $light-gray;
+    }
+}
+
+.Input{
+    color: $very-dark-black;
+    padding: 0 20px;
+    width: 240px;
+    height: 48px;
+    border: 1.5px solid $light-gray;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+
+    &:active, :hover {
+        border: 1px solid $primary-violet;
+    }
+
+
+}
+
+.Input_dark{
+    color: $light-gray;
+    background-color: $almost-black;
+    border: 1px solid $bluish-black;
+
+    &:active, :hover {
+    border: 1px solid $bluish-black;
+    }
+}
+
+.opts{
+   position: relative; 
+   background-color: white;
+   font-weight: 700;
+   width: 280px;
+   border-radius: 10px;
+   margin-top: 38px;
+   box-shadow: 0 10px 20px transparentize(#48549f, 0.75);
+
+   &>*{
+       padding: 20px 20px;
+       border-bottom: 1px solid $light-gray;
+       
+       &:hover, &:active{
+           color: $primary-violet;
+       }
+}
+    &_dark{
+    color: $light-gray;
+    background-color: $almost-black;
+    border: 1px solid $bluish-black;
+    box-shadow: 0 10px 20px transparentize(black, 0.75);
+    &>*{
+       border-bottom: 1px solid $very-dark-black;
+}
+    }
+}
+
+.Hide{
+    display: none;
+}
+
+.Dropdown{
+    display: block;
+    position: relative;
+    margin-left: 85%;
+    margin-top: -12%;
+}
+
+.ddInput{
+    width: 280px;
+}
+
+.Up{
+    transform: rotate(180deg);
+}
+.Active{
+    border: 1px solid $primary-violet;
+}

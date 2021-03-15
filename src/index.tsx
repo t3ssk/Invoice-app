@@ -8,6 +8,10 @@ import './index.css';
 import App from './App';
 import { darkmodeReducer } from './store/reducers/darkmodeReducer';
 
+export type state = {
+  darkmode: boolean
+}
+
 const rootReducer = combineReducers({
   darkmode: darkmodeReducer
 })

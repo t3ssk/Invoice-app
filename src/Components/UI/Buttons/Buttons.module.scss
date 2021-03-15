@@ -1,0 +1,90 @@
+@import '../../../utils/styleVars.scss';
+
+button {
+        height: 48px;
+        border: none;
+        border-radius: 24px;
+        font-weight: 700;
+        outline: none;
+        padding: 0px 30px;
+        cursor: pointer;
+}
+
+.InvoiceButton{
+    width: 150px;
+    background-color: $primary-violet;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    span{
+        display: block;
+      &:first-child{
+        background-color: $light-bg;
+        color: $primary-violet;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &:last-child{
+        padding-right: 10px;
+    }
+}
+}
+
+.ButtonT2{
+    background-color: $primary-violet;
+    color: white;
+}
+
+.InvoiceButton:hover, .InvoiceButton:active, .ButtonT2:active, .ButtonT2:hover  {
+    background-color: $ligter-violet;
+}
+
+.ButtonT3Dark, .AddNewBtn{
+    background-color: $light-bg;
+    color: $gray-violet;
+    &:hover, :active{
+   background-color: $light-gray;
+   color: $gray-violet;
+}
+    }
+
+.ButtonT3Light {
+     background-color: $bluish-black;
+     color: white;
+    &:hover, &:active{
+        background-color: white;
+        color: $light-gray;
+    }
+    }
+
+.ButtonT4Dark{
+    color: $gray;
+}
+.ButtonT4Light{
+    color: $light-gray;
+}
+.ButtonT4Dark, .ButtonT4Light {
+    background-color: #373B53;
+    &:hover, :active{
+        background-color: #0C0E16;
+    }
+}
+
+.ButtonT5{
+    background-color: $muted-red;
+    color: white;
+    &:hover,:active{
+        background-color: $light-muted-red;
+    }
+}
+
+.AddNewBtn{
+    padding: 0 136px;
+}

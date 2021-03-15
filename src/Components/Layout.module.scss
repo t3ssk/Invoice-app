@@ -1,0 +1,21 @@
+@import '../utils/styleVars.scss';
+
+.Layout{
+    position: fixed;
+    overflow: hidden;
+    &_Darkmode{
+        background-color: $almost-black;
+        width: 100vw;
+        height: 100vh;
+    }
+    &_Normal{
+        background-color: $light-bg;
+        width: 100vw;
+        height: 100vh;
+    
+    }
+}
+.Main{
+    padding-left: 20%;
+    padding-top: 5%;
+}

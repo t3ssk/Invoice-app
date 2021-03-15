@@ -1,0 +1,133 @@
+@import '../../../utils/_styleVars.scss';
+.Header_section{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        color: $gray;
+    }
+}
+
+.Header_interactive{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Filter_triger{
+    display: flex;
+    font-weight: 700;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+}
+.Filter_section {
+    width: 192px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px hsla(232, 38%, 45%, 0.25);
+    position: absolute;
+    margin-top: 170px;
+    margin-left: 33%;
+    padding:  20px 10px;
+    &>*{
+        padding: 10px 10px;
+        font-weight: 700;
+    }
+    div{
+        margin-bottom: 10px;
+
+    }
+    label{
+        display: inline-block;
+        position: absolute;
+        margin-left: 20px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        }
+    
+}
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #DFE3FA;
+  border-radius: 2px;
+  &:hover{
+    border: 1px solid $primary-violet;
+  }
+}
+
+.container:hover input ~ .checkmark {
+  border: 1px solid $primary-violet;
+  border-radius: 2px;
+}
+.container input:checked ~ .checkmark {
+  background-color: $primary-violet;
+  background-image: url(../../../assets/icon-check.svg);
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Dark.Header_section {
+    h1, p {color: $light-bg;}
+    .Filter_section{
+        background-color: $bluish-black;
+        color: $light-bg;
+        box-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.25);
+    }
+    .checkmark{
+        background-color: $almost-black;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .Header_section{
+    margin-top: 100px;
+    margin-left: -15%;
+    width: 105%;
+}
+    .Filter_section{
+        margin-left: 45%;
+    }
+
+}
+
+@media screen and (max-width:1024px){
+    .Header_section{
+    margin-top: 100px;
+    margin-left: -15%;
+    width: 105%;
+}
+.Header_interactive{
+    width: 50%;
+}
+    .Filter_section{
+        width: 150px;
+        margin-left: 40%;
+    }
+
+}

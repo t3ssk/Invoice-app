@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { state } from '../../../index';
 import styles from './Buttons.module.scss'
 import plus from '../../../assets/icon-plus.svg'
@@ -10,8 +11,10 @@ interface ButtonType {
 
 
 export const InvoiceButton = () => {
+	const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+
     return (
-        <button className={styles.InvoiceButton}><span><img src={plus} alt=""/></span> <span>New Invoice</span></button>
+        <button className={styles.InvoiceButton}><span><img src={plus} alt=""/></span> <span>New{!isMobile && " Invoice"}</span></button>
     )
 }
 

@@ -1,0 +1,39 @@
+@import '../../../utils/_styleVars.scss';
+
+.Empty_State{
+    width: 30%;
+    margin: 10% 25%;
+    text-align: center;
+    h2{
+        color: $very-dark-black;
+        margin-top: 60px;
+        margin-bottom: 35px;
+    }
+    p {
+        color: $gray;
+        line-height: 0.5;
+    }
+}
+
+.darkmode.Empty_State{
+    h2{
+        color: white;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .Empty_State{
+        width: 50%;
+        margin: 15% auto;
+    }
+}
+
+
+@media screen and (max-width: 420px){
+    .Empty_State{
+        width: 80%;
+        img{
+            width: 70%;
+        }
+    }
+}

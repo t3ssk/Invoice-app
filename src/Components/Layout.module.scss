@@ -19,3 +19,9 @@
     padding-left: 20%;
     padding-top: 5%;
 }
+
+@media screen and (max-width: 1024px){
+    .Main {
+        padding-left: 0;
+    }
+}

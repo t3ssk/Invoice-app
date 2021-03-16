@@ -4,6 +4,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    h1{
+        line-height: 0.1;
+    }
     p{
         color: $gray;
     }
@@ -106,28 +109,36 @@
 
 @media screen and (max-width:1024px){
     .Header_section{
-    margin-top: 100px;
-    margin-left: -15%;
-    width: 105%;
+    margin: 100px auto 0;
+    width: 85%;
 }
     .Filter_section{
+        width: 150px;
         margin-left: 45%;
     }
 
 }
 
-@media screen and (max-width:1024px){
+@media screen and (max-width:420px){
     .Header_section{
-    margin-top: 100px;
-    margin-left: -15%;
-    width: 105%;
+    width: 85%;
+    h1{
+        font-size: 1.4rem;
+    }
 }
 .Header_interactive{
-    width: 50%;
+    width: 55%;
 }
     .Filter_section{
-        width: 150px;
+        width: 120px;
         margin-left: 40%;
+        padding: 20px 15px 20px 0;
+        label{
+            margin-left: 8px;
+        }
+    }
+    .checkmark:hover, :hover input ~ .checkmark, .container input:checked ~ .checkmark {
+        border: none;
     }
 
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
+import { useMediaQuery } from 'react-responsive';
 import arrowDown from '../../../assets/icon-arrow-down.svg'
 import styles from './InvoicesHeader.module.scss'
 import { InvoiceButton } from '../../UI/Buttons/Buttons'
@@ -8,6 +9,7 @@ import { state } from '../../..'
 export const InvoicesHeader = () => {
     const [showOpts, setShowOpts] = React.useState(false)
     const darkmode = useSelector((state:state) => state.darkmode)
+    const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
     return (
 			<div
@@ -22,7 +24,7 @@ export const InvoicesHeader = () => {
 					<div
 						onClick={() => setShowOpts((prev) => !prev)}
 						className={styles.Filter_triger}>
-						<p>Filter by status</p>
+						<p>Filter{!isMobile && "by status"}</p>
 						<img src={arrowDown} alt='' />
 					</div>
 					<InvoiceButton />

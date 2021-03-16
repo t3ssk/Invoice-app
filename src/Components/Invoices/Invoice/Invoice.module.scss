@@ -11,6 +11,10 @@
     padding: 0 40px;
     background-color: white;
     box-shadow: 0 10px 10px $shadows-lightmode;
+    &>p, h3, h2{
+        flex: 1 1 0;
+        text-align: left;
+    }
     h3:before {
         content: '#';
         color: $gray-violet;

@@ -1,5 +1,6 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom'
 import actionTypes from '../../store/actions/index'
 import { state } from '../../index';
 import styles from './Navbar.module.scss'
@@ -13,10 +14,11 @@ export const Navbar = () => {
     const dispatch = useDispatch()
     return (
 			<div className={styles.Navbar}>
+				<Link to="/">
 				<div className={styles.Logo}>
 					<div className={styles.Logo_accent}></div>
 					<img src={logo} alt='' />
-				</div>
+				</div></Link>
 				<div className={styles.Controlgroup}>
 					<div className={styles.Darkmode_switch} 
                     aria-hidden='true' 

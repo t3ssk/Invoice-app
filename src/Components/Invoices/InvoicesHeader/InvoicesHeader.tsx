@@ -1,15 +1,42 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch } from 'react-redux'
 import { useMediaQuery } from 'react-responsive';
 import arrowDown from '../../../assets/icon-arrow-down.svg'
 import styles from './InvoicesHeader.module.scss'
 import { InvoiceButton } from '../../UI/Buttons/Buttons'
 import { state } from '../../..'
+import actionTypes from '../../../store/actions';
 
-export const InvoicesHeader = () => {
+interface InvoiceHeaderProps {
+	numOfInvoices: number
+}
+
+export const InvoicesHeader = (props:InvoiceHeaderProps) => {
     const [showOpts, setShowOpts] = React.useState(false)
     const darkmode = useSelector((state:state) => state.darkmode)
     const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+	const dispatch = useDispatch()
+
+	let invoiceNumText = 'No invoices'
+	if(props.numOfInvoices === 1){
+		if(isMobile){invoiceNumText = '1 invoice'} else {
+			invoiceNumText = 'There is 1 total invoice'
+		}
+	} 
+	else if (props.numOfInvoices > 1) {
+		if (isMobile){invoiceNumText = props.numOfInvoices + ' invoices';}
+		else {invoiceNumText = `There are ${props.numOfInvoices} of total invoices`; }
+	}
+
+	const changeHandler = (event: any) => {
+		const targ = event.target as HTMLInputElement
+		if (targ.checked === false) {
+			dispatch({type: actionTypes.UNSET_FILTER_TERM, payload: targ.value})
+		} else {
+			dispatch({ type: actionTypes.SET_FILTER_TERM, payload: targ.value });
+		}
+		
+	}
 
     return (
 			<div
@@ -18,13 +45,13 @@ export const InvoicesHeader = () => {
 				}`}>
 				<div>
 					<h1>Invoices</h1>
-					<p>No invoices</p>
+					<p>{invoiceNumText}</p>
 				</div>
 				<div className={styles.Header_interactive}>
 					<div
 						onClick={() => setShowOpts((prev) => !prev)}
 						className={styles.Filter_triger}>
-						<p>Filter{!isMobile && "by status"}</p>
+						<p>Filter{!isMobile && 'by status'}</p>
 						<img src={arrowDown} alt='' />
 					</div>
 					<InvoiceButton />
@@ -35,10 +62,11 @@ export const InvoicesHeader = () => {
 							<label htmlFor='draft' className={styles.container}>
 								Draft
 								<input
-									type='radio'
+									type='checkbox'
 									id='draft'
 									name='invoiceStatus'
-									value='male'
+									value='draft'
+									onChange={changeHandler}
 								/>
 								<span className={styles.checkmark}></span>
 							</label>
@@ -47,10 +75,11 @@ export const InvoicesHeader = () => {
 							<label htmlFor='pending' className={styles.container}>
 								Pending
 								<input
-									type='radio'
+									type='checkbox'
 									id='pending'
 									name='invoiceStatus'
 									value='pending'
+									onChange={changeHandler}
 								/>
 								<span className={styles.checkmark}></span>
 							</label>
@@ -59,14 +88,14 @@ export const InvoicesHeader = () => {
 							<label htmlFor='paid' className={styles.container}>
 								Paid
 								<input
-									type='radio'
+									type='checkbox'
 									id='paid'
 									name='invoiceStatus'
 									value='paid'
+									onChange={changeHandler}
 								/>
-							
-							<span className={styles.checkmark}></span>
-                            </label>
+								<span className={styles.checkmark}></span>
+							</label>
 						</div>
 					</div>
 				)}

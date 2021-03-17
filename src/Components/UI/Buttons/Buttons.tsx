@@ -25,7 +25,7 @@ export const ButtonTypeTwo = (props: ButtonType) => {
 export const ButtonTypeThree = (props:ButtonType) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
     return (
-			<button className={darkmode ? styles.ButtonT3Dark : styles.ButtonT3Light}>
+			<button className={!darkmode ? styles.ButtonT3Dark : styles.ButtonT3Light}>
 				{props.children}
 			</button>
 		);

@@ -33,10 +33,11 @@ export const Invoice = (props:invoiceProps) => {
 				<p className={`${styles.status} ${styles[props.status]}`}>
 					{props.status}
 				</p>
-				<button>
-					<Link to={`/invoice/${props.id}`}>
-					<img src={arrowright} alt='' /></Link>
-				</button>
+				<Link to={`/invoice/${props.id}`}>
+					<button>
+						<img src={arrowright} alt='' />
+					</button>
+				</Link>
 			</div>
 		);
 }

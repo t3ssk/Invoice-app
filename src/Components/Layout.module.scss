@@ -6,18 +6,19 @@
     &_Darkmode{
         background-color: $almost-black;
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
+       
     }
     &_Normal{
         background-color: $light-bg;
         width: 100vw;
-        height: 100vh;
-    
+        min-height: 100vh
     }
 }
 .Main{
     padding-left: 20%;
     padding-top: 5%;
+    overflow-y: scroll;
 }
 
 @media screen and (max-width: 1024px){

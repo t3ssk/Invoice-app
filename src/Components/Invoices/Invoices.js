@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { ConditionalLinkWrapper } from '../hoc/ConditionalLinkWrapper';
 import { EmptyState } from './EmptyState/EmptyState'
 import { Invoice } from './Invoice/Invoice'
 import { InvoicesHeader } from './InvoicesHeader/InvoicesHeader'
@@ -17,14 +18,14 @@ export const Invoices = () => {
     preparedInvoices = invoices.filter((invoice) => filterTerms.includes(invoice.status));}
   console.log(preparedInvoices);
 
-  const invoicesMap = preparedInvoices.map((invoice) => 	<Invoice
+  const invoicesMap = preparedInvoices.map((invoice) => 	<ConditionalLinkWrapper link={`/invoice/${invoice.id}`}><Invoice
 					key={invoice.id}
 					id={invoice.id}
 					due={invoice.paymentDue}
 					name={invoice.clientName}
 					status={capitalizeFirstLetter(invoice.status)}
 					total={invoice.total}
-				/>);
+				/></ConditionalLinkWrapper>);
 
     return (
 			<>

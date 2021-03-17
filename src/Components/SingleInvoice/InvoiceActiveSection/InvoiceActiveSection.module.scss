@@ -1,0 +1,13 @@
+@import '../../../utils/_styleVars.scss';
+
+.ActiveSection{
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 10px 10px -10px $shadows-lightmode;
+}

@@ -1,0 +1,86 @@
+@import '../../../utils/_styleVars.scss';
+
+.Invoice__info{
+    background-color: white;
+    width: 75%;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 80px;
+    padding: 50px;
+    box-shadow: 10px 10px -10px $shadows-lightmode;
+    p, address {
+        color: $gray-violet;
+        font-style: normal;
+        line-height: 1;
+    }
+}
+.Invoice__ident__container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    h2::before{
+        content: "#";
+        color: $gray-violet;
+    }
+    address{
+        text-align: right;
+    }
+}
+.Invoice__info__container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 50px;
+    &>*{
+        margin-right: 25%;
+        flex: 0 0 auto;
+    }
+}
+.Invoice__info_date{
+    h3{
+        padding-bottom: 20px;
+    }
+}
+
+.Darkmode.Invoice__info{
+    background-color: $almost-black;
+    color: white;
+    p{
+        color: #DFE3FA;
+    }
+}
+
+@media screen and (max-width: 1024px){
+   .Invoice__info{ margin: 30px auto 80px;}
+}
+@media screen and (max-width: 800px){
+   .Invoice__info__container{
+       padding: 50px 0;
+        &>*{
+        margin-right: 15%;
+    }
+   }
+}
+
+
+@media screen and (max-width: 570px){
+    .Invoice__info{
+        width: 100%;
+        margin:15px -23px 50px;
+        padding: 20px;
+    }
+   .Invoice__ident__container{
+       display: block;
+       address{
+           text-align: left;
+           padding-top: 15px;
+       }
+   }
+   .Invoice__info__container{
+       flex-wrap: wrap;
+   }
+   .Invoice__info_email{
+       flex-basis: 100%;
+   }
+}

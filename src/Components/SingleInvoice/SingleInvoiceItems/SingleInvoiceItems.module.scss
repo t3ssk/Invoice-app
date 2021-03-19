@@ -1,0 +1,105 @@
+@import '../../../utils/_styleVars.scss';
+
+.ItemList{
+    width: 80%;
+    background-color: #F9FAFE;
+    margin: auto;
+    border-radius: 8px;
+    padding: 20px 0 0 0;
+    table{
+        width: 99%;
+        text-align: left;
+        margin-left: auto;
+        border-spacing: 20px;
+    }
+    tr{
+        padding-bottom: 30px;
+    }
+    th{
+        color: $gray-violet;
+        font-weight: normal;
+        &:nth-child(3), &:last-child{
+            text-align: right;
+        }
+        &:nth-child(2){
+            text-align: center;
+        }
+    }
+    td{
+        color: $gray-violet;
+        font-weight: bold;
+        padding: 10px 0;
+        &:first-child, &:last-child{
+            color: $very-dark-black;
+        }
+        &:nth-child(2){
+            text-align: center;
+        }
+        &:nth-child(3), &:last-child{
+            text-align: right;
+        }
+    }
+}
+
+.ItemList__total{
+    background-color: #373B53;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+
+.Darkmode.ItemList{
+    background-color: $bluish-black;
+    color: white;
+    th{
+        color: #DFE3FA;
+    }
+    td{
+        color: white;
+    }
+}
+
+.Darkmode .ItemList__total{
+    background-color: $very-dark-black;
+   
+    h2, p{
+         color: white;
+    }
+}
+
+.ItemList_Rows{
+    display: flex;
+    width: 88%;
+    margin: auto;
+    justify-content: space-between;
+    &>*{
+        padding-bottom: 10px;
+    }
+    p {
+        font-weight: 700;
+    }
+}
+p.Item__name, p.Item__total{
+    color: black !important;
+}
+
+.Darkmode{
+    p.Item__name, p.Item__total{
+    color: white !important;
+}
+}
+@media screen and (max-width: 570px){
+    .ItemList{
+        width: 90%;
+    }
+    .ItemList__total{
+        p{
+            color:white !important;
+        }
+    }
+}

@@ -5,19 +5,24 @@ type address = {city: string,
         country: string, 
         postCode: string, 
         street: string}
-
+export interface item {
+	name: string;
+	price: number;
+	quantity: number;
+	total: number;
+}
 export interface InvoiceState {
 	id: string;
 	paymentDue: string;
 	paymentTerms: number;
 	status: 'draft' | 'pending' | 'paid';
-	clientAdress: address;
+	clientAddress: address;
 	clientEmail: string;
 	clientName: string;
 	createdAt: string;
 	description: string;
 	total: number;
-	items: { name: string; price: number; quantity: number; total: number }[];
+	items: item[];
 	senderAddress: address;
 };
 

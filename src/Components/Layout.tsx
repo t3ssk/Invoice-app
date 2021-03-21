@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import firebase from 'firebase/app'
-import 'firebase/database'
 import { state } from './../index';
 import styles from './Layout.module.scss'
 import { Navbar } from './Navbar/Navbar'
@@ -12,16 +10,15 @@ interface LayoutProps {
 }
 export const Layout = (props:LayoutProps) => {
     const darkmode = useSelector((state: state) => state.darkmode);
+	const invoices = useSelector((state: state) => state.invoice);
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		const database = firebase.database()
-		const invoicesRef = database.ref('/invoiceData/')
-		invoicesRef.on('value', (snapshot)=>{
-			const data = snapshot.val()
-			dispatch({type: actionTypes.INVOICE_FETCH_DATA, data})
-		})
-
+		const fetchedData = localStorage.getItem('data')
+		if(fetchedData){
+			dispatch({type: actionTypes.INVOICE_FETCH_DATA, data: JSON.parse(fetchedData)})
+		} 
+		else {localStorage.setItem('data', JSON.stringify(invoices))}
 	}, [])
 
 

@@ -15,7 +15,7 @@ export const SingleInvoiceItems = ({items}: singleInvoiceItemsProps) => {
     if(items)
     {
         items.forEach((item:item)=> total += item.total)
-        const tableRows = items.map((item:item)=>(<tr>
+        const tableRows = items.map((item:item)=>(<tr key={item.name}>
             <td>{item.name}</td>
             <td>{item.quantity}</td>
             <td>£ {item.price.toFixed(2)}</td>

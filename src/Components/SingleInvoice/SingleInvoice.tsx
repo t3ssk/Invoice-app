@@ -18,7 +18,7 @@ export const SingleInvoice = () => {
 
     return (
 			<>
-				<InvoiceActiveSection invoiceid={invoiceid} invoices={invoices}>
+				<InvoiceActiveSection invoiceid={invoiceid}>
 					{isMobile && <InvoiceInfo invoice={singleInvoice} />}
 				</InvoiceActiveSection>
 				{!isMobile && <InvoiceInfo invoice={singleInvoice} />}

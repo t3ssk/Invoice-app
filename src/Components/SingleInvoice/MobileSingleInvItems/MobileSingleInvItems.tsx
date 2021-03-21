@@ -14,7 +14,7 @@ export const MobileSingleInvItems = ({items}: singleInvoiceItemsProps) => {
                 items.forEach((item:item)=>total+= item.total)
                 const itemRows = items.map((item:item)=>{
                     return (
-											<div className={styles.ItemList_Rows}>
+											<div className={styles.ItemList_Rows} key={item.name}>
 												<div>
 													<p className={styles.Item__name}>{item.name}</p>
 													<p>

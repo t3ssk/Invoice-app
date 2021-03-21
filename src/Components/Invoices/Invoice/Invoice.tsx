@@ -22,7 +22,7 @@ export const Invoice = (props:invoiceProps) => {
 
     return (
 
-			<div
+			<Link to={`/invoice/${props.id}`}><div
 				className={`${styles.Invoice_info} ${
 					darkmode ? styles.darkmode : undefined
 				}`}>
@@ -33,11 +33,11 @@ export const Invoice = (props:invoiceProps) => {
 				<p className={`${styles.status} ${styles[props.status]}`}>
 					{props.status}
 				</p>
-				<Link to={`/invoice/${props.id}`}>
 					<button>
 						<img src={arrowright} alt='' />
 					</button>
-				</Link>
+				
 			</div>
+			</Link>
 		);
 }

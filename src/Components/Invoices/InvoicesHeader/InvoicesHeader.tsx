@@ -54,7 +54,7 @@ export const InvoicesHeader = (props:InvoiceHeaderProps) => {
 						<p>Filter{!isMobile && 'by status'}</p>
 						<img src={arrowDown} alt='' />
 					</div>
-					<InvoiceButton />
+					<InvoiceButton onClick={()=>dispatch({type: actionTypes.OPEN_DRAWER_NEW_INVOICE})}/>
 				</div>
 				{showOpts && (
 					<div className={styles.Filter_section}>

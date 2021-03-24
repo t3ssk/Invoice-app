@@ -1,4 +1,5 @@
 import React from 'react'
+import {useFormikContext} from 'formik'
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { state } from '../../../index';
@@ -7,7 +8,8 @@ import plus from '../../../assets/icon-plus.svg'
 
 interface ButtonType {
 	children?: string;
-	onClick?: ()=>void
+	onClick?: () => void;
+	type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 
@@ -25,7 +27,14 @@ export const InvoiceButton = (props:ButtonType) => {
 }
 
 export const ButtonTypeTwo = (props: ButtonType) => {
-	return <button className={styles.ButtonT2} onClick={props.onClick}>{props.children}</button>;
+	
+	return (
+		<button
+			className={styles.ButtonT2}
+			type={props.type}>
+			{props.children}
+		</button>
+	);
 };
 
 export const ButtonTypeThree = (props:ButtonType) => {
@@ -33,7 +42,8 @@ export const ButtonTypeThree = (props:ButtonType) => {
     return (
 			<button
 				className={!darkmode ? styles.ButtonT3Dark : styles.ButtonT3Light}
-				onClick={props.onClick}>
+				onClick={props.onClick}
+				type={props.type}>
 				{props.children}
 			</button>
 		);

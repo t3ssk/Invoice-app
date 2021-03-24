@@ -15,7 +15,7 @@ export const Invoices = () => {
 
   if(filterTerms.length > 0){
     preparedInvoices = invoices.filter((invoice) => filterTerms.includes(invoice.status));}
-  console.log(preparedInvoices);
+
 
   const invoicesMap = preparedInvoices.map((invoice) => <Invoice
 					key={invoice.id}

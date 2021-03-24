@@ -1,6 +1,8 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import {nanoid} from 'nanoid'
 import { useTransition, animated } from 'react-spring';
+import {BillFromSection} from './BillFromSection/BillFromSection'
 import { state } from '../..'
 import actionTypes from '../../store/actions'
 import { ButtonSection } from './ButtonSection/ButtonSection';
@@ -20,6 +22,8 @@ export const InsertDataLayout = () => {
     if(openDrawer.EditInvoice){
         content = <h2>Edit <span className={styles.Invoice__id}>{openDrawer.InvoiceId}</span></h2>
     }
+    
+
     return (
 			<>
 				<div
@@ -36,8 +40,7 @@ export const InsertDataLayout = () => {
 									darkmode ? styles.Darkmode : null
 								}`}>
 								{content}
-								
-								<ButtonSection />
+								<BillFromSection/>
 							</animated.div>
 						)
 				)}

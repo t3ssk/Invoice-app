@@ -27,7 +27,7 @@ export const ButtonSection = () => {
 						{openDrawer.NewInvoice && (
 							<ButtonTypeFour>Save as Draft</ButtonTypeFour>
 						)}
-						<ButtonTypeTwo>Save &amp; Send</ButtonTypeTwo>
+						<ButtonTypeTwo type="submit">Save &amp; Send</ButtonTypeTwo>
 					</div>
 				</div>
 			</>

@@ -25,9 +25,11 @@
     &:active, :hover {
         border: 1px solid $primary-violet;
     }
-
-
 }
+
+
+.Input.invalid{
+    border: 1px solid $muted-red;}
 
 .Input_dark{
     color: $light-gray;
@@ -88,3 +90,4 @@
 .Active{
     border: 1px solid $primary-violet;
 }
+

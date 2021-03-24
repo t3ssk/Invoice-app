@@ -8,15 +8,17 @@ import Calendar from 'react-calendar';
 import './Calendar.scss';
 
 interface inputProps {
-    children?: string,
-    value?: string,
-    id?: string,
-    isDarkmode?: boolean,
-    onChange: ()=>void,
-    width?: {width: string, padding: string}
-
-
+	name: string;
+	children?: string;
+	value?: string;
+	id?: string;
+	width?: string;
+	padding?: string;
+	onChange?: (event:any)=>void
+	type: 'text'  | 'email'
+	invalid?: boolean 
 }
+
 
 export const TextInput = (props:inputProps) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
@@ -24,26 +26,27 @@ export const TextInput = (props:inputProps) => {
 			<>
 				<label
 					htmlFor={props.id}
-					className={`${styles.Label} ${
-						darkmode && styles.Label_dark
-					}`}>
+					className={`${styles.Label} ${darkmode && styles.Label_dark}`}>
 					{props.children}
 				</label>
+
 				<input
-					type='text'
+					name={props.name}
+					type={props.type}
 					value={props.value}
 					id={props.id}
-					className={`${styles.Input}  ${
-						darkmode && styles.Input_dark
+					className={`${styles.Input}  ${darkmode && styles.Input_dark} ${
+						props.invalid && styles.invalid
 					}`}
-                    style={props.width}
+					style={{ width: props.width, padding: props.padding }}
+					onChange={props.onChange}
 				/>
 			</>
 		);
 }
 
 export const DropDownChoice = (props: inputProps) => {
-    const [val, setVal] = React.useState('Net 30 Days');
+    const [val, setVal] = React.useState('30');
 	const darkmode = useSelector((state: state) => state.darkmode);
     const [showOpts, setShowOpts] = React.useState(true)
     return (
@@ -57,6 +60,7 @@ export const DropDownChoice = (props: inputProps) => {
 				</label>
 				<div className={styles.ddInput}>
 					<input
+						name={props.name}
 						id="paymentTerms"
 						className={`${styles.Input} ${
 							darkmode && styles.Input_dark
@@ -84,28 +88,28 @@ export const DropDownChoice = (props: inputProps) => {
 					}`}>
 					<p
 						onClick={() => {
-							setVal('Net 1 Day');
+							setVal('1');
 							setShowOpts(false);
 						}}>
 						Net 1 Day
 					</p>
 					<p
 						onClick={() => {
-							setVal('Net 7 Days');
+							setVal('7');
 							setShowOpts(false);
 						}}>
 						Net 7 Days
 					</p>
 					<p
 						onClick={() => {
-							setVal('Net 14 Days');
+							setVal('14');
 							setShowOpts(false);
 						}}>
 						Net 14 Days
 					</p>
 					<p
 						onClick={() => {
-							setVal('Net 30 Days');
+							setVal('30');
 							setShowOpts(false);
 						}}>
 						Net 30 Days
@@ -121,6 +125,7 @@ export const CalendarPicker = (props:inputProps) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
     const [val, setVal] = React.useState(new Date())
     const [showCal, setShowCal] = React.useState(false)
+	
 
     const onChange = (val:any) => {
         setVal(val)
@@ -128,18 +133,17 @@ export const CalendarPicker = (props:inputProps) => {
     return (
 			<>
 				<label
-					htmlFor='paymentTerms'
-					className={`${styles.Label} ${
-						darkmode && styles.Label_dark
-					}`}>
+					htmlFor='Calendar'
+					className={`${styles.Label} ${darkmode && styles.Label_dark}`}>
 					Issue Date
 				</label>
 				<div className={styles.ddInput}>
 					<input
-						id='paymentTerms'
-						className={`${styles.Input} ${
-							darkmode && styles.Input_dark
-						} ${!darkmode && showCal && styles.Active}`}
+						name={props.name}
+						id='Calendar'
+						className={`${styles.Input} ${darkmode && styles.Input_dark} ${
+							!darkmode && showCal && styles.Active
+						}`}
 						value={val.toDateString()}
 						onClick={() => {
 							setShowCal(true);
@@ -155,7 +159,7 @@ export const CalendarPicker = (props:inputProps) => {
 				</div>
 
 				{showCal && (
-					<div className={darkmode ? "Darkmode" : undefined}>
+					<div className={darkmode ? 'Darkmode' : undefined}>
 						<Calendar onChange={onChange} value={val} />
 					</div>
 				)}

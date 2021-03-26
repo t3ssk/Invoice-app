@@ -1,6 +1,5 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import { state } from '../../..';
 import arrowright from '../../../assets/icon-arrow-right.svg';
@@ -17,7 +16,6 @@ interface invoiceProps {
 export const Invoice = (props:invoiceProps) => {
     const darkmode = useSelector((state:state) => state.darkmode)
 	const date = getFormattedDateFromString(props.due)
-	const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
 
     return (

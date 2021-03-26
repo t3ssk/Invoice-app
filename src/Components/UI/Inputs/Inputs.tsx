@@ -17,6 +17,7 @@ interface inputProps {
 	onChange?: (event:any)=>void
 	type: 'text'  | 'email'
 	invalid?: boolean 
+	formik: any
 }
 
 
@@ -25,7 +26,7 @@ export const TextInput = (props:inputProps) => {
     return (
 			<>
 				<label
-					htmlFor={props.id}
+					htmlFor={props.name}
 					className={`${styles.Label} ${darkmode && styles.Label_dark}`}>
 					{props.children}
 				</label>
@@ -34,13 +35,19 @@ export const TextInput = (props:inputProps) => {
 					name={props.name}
 					type={props.type}
 					value={props.value}
-					id={props.id}
+					id={props.name}
 					className={`${styles.Input}  ${darkmode && styles.Input_dark} ${
-						props.invalid && styles.invalid
+						props.formik.touched.clientsEmail &&
+						props.formik.errors.clientsEmail !== undefined &&
+						styles.invalid
 					}`}
 					style={{ width: props.width, padding: props.padding }}
 					onChange={props.onChange}
 				/>
+				{props.formik.touched[props.name] &&
+				props.formik.errors[props.name] ? (
+					<div className={styles.error}>{props.formik.errors[props.name]}</div>
+				) : null}
 			</>
 		);
 }

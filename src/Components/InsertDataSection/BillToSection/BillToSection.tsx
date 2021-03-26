@@ -3,21 +3,28 @@ import { TextInput } from '../../UI/Inputs/Inputs'
 import styles from '../BillFromSection/BillFromSection.module.scss'
 
 export const BillToSection = (props:any) => {
+
     return (
-			<div className={styles.Bill__To}>
+			<div className={styles.Bill__To__Client}>
 				<h4>Bill To</h4>
 				<TextInput
-					invalid={props.formik.touched.street && props.formik.errors.street !== undefined}
+					formik={props.formik}
+					value={props.formik.values.clientsName}
+                    onChange={props.formik.handleChange}
 					name='clientsName'
-					id='clientsName'
-					onChange={props.formik.handleChange}
-					value={props.formik.values.street}
+					width='90%'
 					type='text'>
 					Client's Name
 				</TextInput>
-				{props.formik.touched.country && props.formik.errors.country ? (
-					<div className={styles.error}>{props.formik.errors.country}</div>
-				) : null}
+				<TextInput
+					formik={props.formik}
+                    value={props.formik.values.clientsEmail}
+                    onChange={props.formik.handleChange}
+					name='clientsEmail'
+					width='90%'
+					type='text'>
+					Client's Name
+				</TextInput>
 			</div>
 		);
 }

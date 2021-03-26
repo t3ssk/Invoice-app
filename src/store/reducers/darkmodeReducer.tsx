@@ -1,4 +1,3 @@
-import { act } from '@testing-library/react'
 import actionTypes, {darkmodeSwitchType} from '../actions/index'
 
 export const darkmodeReducer = (state = false, action: darkmodeSwitchType) => {

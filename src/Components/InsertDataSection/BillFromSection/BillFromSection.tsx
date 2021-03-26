@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useFormik} from 'formik'
+import { nanoid } from 'nanoid';
+import moment from 'moment';
 import styles from './BillFromSection.module.scss'
 import { TextInput } from '../../UI/Inputs/Inputs';
 import {validationSchema} from '../../../utils/validationschema'
@@ -8,91 +10,78 @@ import { BillToSection } from '../BillToSection/BillToSection';
 
 export const BillFromSection = (props: any) => {
     const formik = useFormik({
-			initialValues: { street: '', city: '', postCode: '', country: '', clientsName: '' },
-			onSubmit: (values: any) => {
-				console.log(values);
+			initialValues: {
+                senderAddress:{
+				street: '',
+				city: '',
+				postCode: '',
+				country: ''},
+				clientsName: '',
+                clientsEmail: ''
 			},
-			validationSchema: validationSchema
+			onSubmit: (values: any) => {
+				const endVals = { ...values, id: nanoid(6), createdAt: moment(Date.now()).format('YYYY-MM-DD')};
+				console.log(endVals);
+			},
+			//validationSchema: validationSchema,
 		});
-
-   
-
+        
 	return (
 		<div className={styles.Bill__To}>
 			<form onSubmit={formik.handleSubmit}>
 				<h4>Bill from</h4>
 
 				<TextInput
-					invalid={formik.touched.street && formik.errors.street !== undefined}
-					name='street'
-					id='street'
+					formik={formik}
+					value={formik.values.senderAddress.street}
+					onChange={formik.handleChange}
+					name='senderAddress.street'
 					width='90%'
 					padding='0 10px'
-					onChange={formik.handleChange}
-					value={formik.values.street}
 					type='text'>
 					Street Address
 				</TextInput>
-				{formik.touched.street && formik.errors.street ? (
-					<div className={styles.error}>{formik.errors.street}</div>
-				) : null}
+
 				<div className={styles.Small__form_items}>
 					<div>
 						<TextInput
-							invalid={formik.touched.city && formik.errors.city !== undefined}
-							id='city'
-							name='city'
+							formik={formik}
+							value={formik.values.senderAddress.city}
+							onChange={formik.handleChange}
+							name='senderAddress.city'
 							width='80%'
 							padding='0 10px'
-							onChange={formik.handleChange}
-							value={formik.values.city}
 							type='text'>
 							City
 						</TextInput>
-						{formik.touched.city && formik.errors.city ? (
-							<div className={styles.error}>{formik.errors.city}</div>
-						) : null}
 					</div>
 					<div>
 						<TextInput
-							invalid={
-								formik.touched.postCode && formik.errors.postCode !== undefined
-							}
-							name='postCode'
-							id='postCode'
+							formik={formik}
+							value={formik.values.senderAddress.postCode}
+							onChange={formik.handleChange}
+							name='senderAddress.postCode'
 							width='80%'
 							padding='0 10px'
-							onChange={formik.handleChange}
-							value={formik.values.postCode}
 							type='text'>
 							Post Code
 						</TextInput>
-
-						{formik.touched.postCode && formik.errors.postCode ? (
-							<div className={styles.error}>{formik.errors.postCode}</div>
-						) : null}
 					</div>
 
 					<div>
 						<TextInput
-							invalid={
-								formik.touched.country && formik.errors.country !== undefined
-							}
-							id='country'
-							name='country'
+							formik={formik}
+							value={formik.values.senderAddress.country}
+							onChange={formik.handleChange}
+							name='senderAddress.country'
 							width='80%'
 							padding='0 10px'
-							onChange={formik.handleChange}
-							value={formik.values.country}
 							type='text'>
 							Country
 						</TextInput>
-						{formik.touched.country && formik.errors.country ? (
-							<div className={styles.error}>{formik.errors.country}</div>
-						) : null}
 					</div>
 				</div>
-                <BillToSection formik={formik} />
+				<BillToSection formik={formik} />
 				<ButtonSection />
 			</form>
 		</div>

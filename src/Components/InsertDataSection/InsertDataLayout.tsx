@@ -1,11 +1,9 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {nanoid} from 'nanoid'
 import { useTransition, animated } from 'react-spring';
 import {BillFromSection} from './BillFromSection/BillFromSection'
 import { state } from '../..'
 import actionTypes from '../../store/actions'
-import { ButtonSection } from './ButtonSection/ButtonSection';
 import styles from './InsertDataLayout.module.scss'
 
 export const InsertDataLayout = () => {
@@ -34,7 +32,7 @@ export const InsertDataLayout = () => {
 				{transitions.map(
 					({ item, key, props }) =>
 						item && (
-							<animated.div
+							<animated.div key={key}
 								style={props}
 								className={`${styles.InsertData__container} ${
 									darkmode ? styles.Darkmode : null

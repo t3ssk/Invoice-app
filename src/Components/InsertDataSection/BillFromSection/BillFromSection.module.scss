@@ -5,7 +5,12 @@
     h4{
         color: $primary-violet;
     }
-
+    label{
+        margin-top: 30px;
+    }
+    &__Client{
+        margin-left: 0;
+    }
 }
 
 .error{
@@ -15,7 +20,6 @@
 }
 
 .Small__form_items{
-    margin-top: 30px;
     display: flex;
     width: 90%;
     justify-content: space-between;

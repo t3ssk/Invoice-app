@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 import 'firebase/database'
 import {useMediaQuery} from 'react-responsive'
 import { state } from '../../..';
-import { InvoiceState } from '../../../store/reducers/InvoiceReducer';
 import {
 	ButtonTypeFive,
 	ButtonTypeThree,

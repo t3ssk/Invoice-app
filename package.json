@@ -18,6 +18,7 @@
     "@types/yup": "^0.29.11",
     "firebase": "^8.3.0",
     "formik": "^2.2.6",
+    "moment": "^2.29.1",
     "nanoid": "^3.1.22",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",

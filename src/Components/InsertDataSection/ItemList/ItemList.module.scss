@@ -1,0 +1,67 @@
+@import '../../../utils/_styleVars.scss';
+
+.Items_List{
+    margin: 30px 50px;
+    h2{
+        color: #777F98;
+        font-size: 1.2rem;
+    }
+}
+.Items_Naming{
+    color: #777F98;
+}
+.Item_Line{
+    margin-bottom: 30px;
+}
+
+.Items_Naming, .Item_Line{
+display: grid;
+width: 95%;
+grid-template-columns: 3fr 0.5fr 1.2fr 1fr 0.5fr;
+align-items: center;
+grid-template-rows: 1fr;
+grid-column-gap: 30px;
+grid-row-gap: 0px;
+} 
+
+.Name_name, .Input_name{
+grid-area: 1 / 1 / 2 / 2;
+input{width: 90%;}
+}
+.Name_qty, .Input_qty{
+grid-area: 1 / 2 / 2 / 3; 
+ input{width: 50%;}
+}
+.Name_price,.Input_price{
+grid-area: 1 / 3 / 2 / 4;   
+input{width: 75%;}
+}
+.Name_total,.Input_total{
+grid-area: 1 / 4 / 2 / 5; 
+}
+
+.Trashcan{
+background-color: #777F98;
+width: 32px;
+height: 32px;
+cursor: pointer;
+mask: url(../../../assets/icon-delete.svg) no-repeat center;
+grid-area: 1 / 5 / 2 / 6; 
+}
+
+.Trashcan:hover{
+    background-color: $muted-red;
+}
+
+.Input_total{
+    font-weight: bold;
+    color: $gray;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.error{
+    input{
+        border: 1px solid $muted-red;
+    }
+}

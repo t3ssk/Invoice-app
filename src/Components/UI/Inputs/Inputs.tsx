@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { getIn } from 'formik';
+import moment from 'moment'
 import { state } from '../../../index';
 import styles from './Inputs.module.scss'
 import arrow from '../../../assets/icon-arrow-down.svg';
@@ -10,19 +12,29 @@ import './Calendar.scss';
 interface inputProps {
 	name: string;
 	children?: string;
-	value?: string;
+	value?: string | number | null;
 	id?: string;
-	width?: string;
-	padding?: string;
-	onChange?: (event:any)=>void
-	type: 'text'  | 'email'
-	invalid?: boolean 
-	formik: any
+	onChange?: (event: any) => void | any;
+	type?: 'text' | 'email' | undefined | 'number';
+	getPrice?:any
+	invalid?: boolean;
+	formik: any;
+	readOnly?: boolean;
 }
 
 
 export const TextInput = (props:inputProps) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
+	const change = (event:any) => {
+		if(props.getPrice){
+			props.getPrice(event);
+		}
+		
+		props.formik.handleChange(event);
+	}
+	const error = getIn(props.formik.errors, props.name);
+	const value = getIn(props.formik.values, props.name)
+	
     return (
 			<>
 				<label
@@ -32,47 +44,46 @@ export const TextInput = (props:inputProps) => {
 				</label>
 
 				<input
+					readOnly={props.readOnly}
 					name={props.name}
 					type={props.type}
-					value={props.value}
+					value={props.value || value}
 					id={props.name}
+					min='0'
 					className={`${styles.Input}  ${darkmode && styles.Input_dark} ${
-						props.formik.touched.clientsEmail &&
-						props.formik.errors.clientsEmail !== undefined &&
-						styles.invalid
+						error !== undefined && styles.invalid
 					}`}
-					style={{ width: props.width, padding: props.padding }}
-					onChange={props.onChange}
+					onChange={change}
+					onBlur={props.formik.handleBlur}
 				/>
-				{props.formik.touched[props.name] &&
-				props.formik.errors[props.name] ? (
-					<div className={styles.error}>{props.formik.errors[props.name]}</div>
+				{error !== undefined ? (
+					<div className={styles.error}>{error}</div>
 				) : null}
 			</>
 		);
 }
 
 export const DropDownChoice = (props: inputProps) => {
-    const [val, setVal] = React.useState('30');
+	const { setFieldValue } = props.formik;
 	const darkmode = useSelector((state: state) => state.darkmode);
-    const [showOpts, setShowOpts] = React.useState(true)
+    const [showOpts, setShowOpts] = React.useState(false)
+
     return (
 			<>
 				<label
-					htmlFor="paymentTerms"
-					className={`${styles.Label} ${
-						darkmode && styles.Label_dark
-					}`}>
+					htmlFor={props.name}
+					className={`${styles.Label} ${darkmode && styles.Label_dark}`}>
 					Payment Terms
 				</label>
 				<div className={styles.ddInput}>
 					<input
+						readOnly
 						name={props.name}
-						id="paymentTerms"
-						className={`${styles.Input} ${
-							darkmode && styles.Input_dark
-						} ${!darkmode && showOpts && styles.Active}`}
-						value={val}
+						id={props.name}
+						className={`${styles.Input} ${darkmode && styles.Input_dark} ${
+							!darkmode && showOpts && styles.Active
+						}`}
+						value={props.formik.values.paymentTerms}
 						onClick={() => {
 							setShowOpts(true);
 						}}
@@ -95,28 +106,28 @@ export const DropDownChoice = (props: inputProps) => {
 					}`}>
 					<p
 						onClick={() => {
-							setVal('1');
+							setFieldValue(props.name, 'Net 1 Day');
 							setShowOpts(false);
 						}}>
 						Net 1 Day
 					</p>
 					<p
 						onClick={() => {
-							setVal('7');
+							setFieldValue(props.name, 'Net 7 Day');
 							setShowOpts(false);
 						}}>
 						Net 7 Days
 					</p>
 					<p
 						onClick={() => {
-							setVal('14');
+							setFieldValue(props.name, 'Net 14 Days');
 							setShowOpts(false);
 						}}>
 						Net 14 Days
 					</p>
 					<p
 						onClick={() => {
-							setVal('30');
+							setFieldValue(props.name, 'Net 30 Days');
 							setShowOpts(false);
 						}}>
 						Net 30 Days
@@ -130,28 +141,33 @@ export const DropDownChoice = (props: inputProps) => {
 
 export const CalendarPicker = (props:inputProps) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
-    const [val, setVal] = React.useState(new Date())
+	 const { setFieldValue } = props.formik;
+     const [val] = React.useState(new Date())
     const [showCal, setShowCal] = React.useState(false)
-	
 
     const onChange = (val:any) => {
-        setVal(val)
+		const date = moment(new Date(val)).format('YYYY-MM-DD');
+       setFieldValue(props.name, date);
+	   setShowCal(false)
     }
     return (
 			<>
 				<label
-					htmlFor='Calendar'
+					htmlFor={props.name}
 					className={`${styles.Label} ${darkmode && styles.Label_dark}`}>
 					Issue Date
 				</label>
 				<div className={styles.ddInput}>
 					<input
+						readOnly
 						name={props.name}
-						id='Calendar'
+						id={props.name}
 						className={`${styles.Input} ${darkmode && styles.Input_dark} ${
 							!darkmode && showCal && styles.Active
+						}  ${
+							props.formik.errors[props.name] !== undefined && styles.invalid
 						}`}
-						value={val.toDateString()}
+						value={props.formik.values.paymentDue}
 						onClick={() => {
 							setShowCal(true);
 						}}
@@ -163,8 +179,13 @@ export const CalendarPicker = (props:inputProps) => {
 						}}>
 						<img src={calendar} alt='' />
 					</span>
+					
 				</div>
-
+				{props.formik.errors[props.name] ? (
+										<div className={styles.errorDate}>
+											{props.formik.errors[props.name]}
+										</div>
+									) : null}
 				{showCal && (
 					<div className={darkmode ? 'Darkmode' : undefined}>
 						<Calendar onChange={onChange} value={val} />

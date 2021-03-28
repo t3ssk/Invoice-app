@@ -38,8 +38,8 @@ export const InvoiceActiveSection = (props: SingleInvoiceProps) => {
 		localStorage.setItem('data', JSON.stringify(invoices));
 	}
 	
-	return (
-		<>
+	return (!singleInvoice?
+			 <p>Loading</p> : (<>
 			<Link
 				to='/'
 				className={`${styles.Go_Back} ${
@@ -63,15 +63,26 @@ export const InvoiceActiveSection = (props: SingleInvoiceProps) => {
 				</div>
 				{isMobile && props.children}
 				<div className={styles.Buttons_Mobile}>
-					<ButtonTypeThree onClick={()=>dispatch({type: actionTypes.OPEN_DRAWER_EDIT_INVOICE , id: singleInvoice.id})}>Edit</ButtonTypeThree>
+					<ButtonTypeThree
+						onClick={() =>
+							dispatch({
+								type: actionTypes.OPEN_DRAWER_EDIT_INVOICE,
+								id: singleInvoice.id,
+							})
+						}>
+						Edit
+					</ButtonTypeThree>
 					<ButtonTypeFive onClick={() => deleteHandler(props.invoiceid)}>
 						Delete
 					</ButtonTypeFive>
-					{singleInvoice.status !== "paid" && <ButtonTypeTwo onClick={() => markPaidHandler(props.invoiceid)}>
-						Mark as Paid
-					</ButtonTypeTwo>}
+					{singleInvoice.status !== 'paid' && (
+						<ButtonTypeTwo onClick={() => markPaidHandler(props.invoiceid)}>
+							Mark as Paid
+						</ButtonTypeTwo>
+					)}
 				</div>
 			</div>
-		</>
+			
+		</>)
 	);
 };

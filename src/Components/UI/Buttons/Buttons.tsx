@@ -7,8 +7,9 @@ import plus from '../../../assets/icon-plus.svg'
 
 interface ButtonType {
 	children?: string;
-	onClick?: () => void;
+	onClick?: any;
 	type?: 'button' | 'submit' | 'reset' | undefined;
+	addNew?: any
 }
 
 
@@ -29,8 +30,10 @@ export const ButtonTypeTwo = (props: ButtonType) => {
 	
 	return (
 		<button
+			id="btn2"
+			type={props.type}
 			className={styles.ButtonT2}
-			type={props.type}>
+			onClick={props.onClick}>
 			{props.children}
 		</button>
 	);
@@ -52,6 +55,8 @@ export const ButtonTypeFour = (props:ButtonType) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
     return (
 			<button
+				id='btn4'
+				type={props.type}
 				className={darkmode ? styles.ButtonT4Dark : styles.ButtonT4Light}
 				onClick={props.onClick}>
 				{props.children}
@@ -69,7 +74,7 @@ export const ButtonTypeFive= (props: ButtonType) => {
 
 export const AddNewItemBtn = (props: ButtonType) => {
     return (
-			<button className={styles.AddNewBtn} onClick={props.onClick}>
+			<button className={styles.AddNewBtn} onClick={props.addNew} type="button">
 				+ Add New Item
 			</button>
 		);

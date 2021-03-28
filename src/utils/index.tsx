@@ -1,5 +1,3 @@
-import {validationSchema} from './validationschema'
-
 
 export const getFormattedDateFromString = (datestr:string):string => {
     const year = datestr.slice(0,4)

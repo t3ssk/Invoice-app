@@ -15,7 +15,8 @@
 .Input{
     color: $very-dark-black;
     padding: 0 20px;
-    width: 240px;
+    min-width: 0;
+    max-width: auto;
     height: 48px;
     border: 1.5px solid $light-gray;
     font-weight: 700;
@@ -42,10 +43,11 @@
 }
 
 .opts{
-   position: relative; 
+   position: absolute; 
+   z-index: 30;
    background-color: white;
    font-weight: 700;
-   width: 280px;
+   width: 38%;
    border-radius: 10px;
    margin-top: 38px;
    box-shadow: 0 10px 20px transparentize(#48549f, 0.75);
@@ -53,6 +55,10 @@
    &>*{
        padding: 20px 20px;
        border-bottom: 1px solid $light-gray;
+       &:last-child{
+           padding: 20px 20px 15px;
+           border-bottom: none;
+       }
        
        &:hover, &:active{
            color: $primary-violet;
@@ -76,12 +82,12 @@
 .Dropdown{
     display: block;
     position: relative;
-    margin-left: 85%;
-    margin-top: -12%;
+    margin-left: 80%;
+    margin-top: -11%;
 }
 
 .ddInput{
-    width: 280px;
+    width:100%;
 }
 
 .Up{
@@ -90,4 +96,30 @@
 .Active{
     border: 1px solid $primary-violet;
 }
+.readOnly{
+    border: none;
+    cursor: default;
+}
 
+.error, .errorDate{
+    color: $muted-red;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.errorDate{
+    padding-top: 20px;
+}
+@media screen and (max-width: 1104px){
+.Dropdown{
+    margin-top: -20%;
+}
+
+}
+
+@media screen and (max-height: 780px){
+.Dropdown{
+    margin-top: -15%;
+}
+
+}

@@ -16,6 +16,9 @@
         flex: 1 1 0;
         text-align: left;
     }
+    h3{
+        text-transform: uppercase;
+    }
     h3:before {
         content: '#';
         color: $gray-violet;

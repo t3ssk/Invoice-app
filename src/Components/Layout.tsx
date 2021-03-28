@@ -14,12 +14,16 @@ export const Layout = (props:LayoutProps) => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		const fetchedData = localStorage.getItem('data')
-		if(fetchedData){
-			dispatch({type: actionTypes.INVOICE_FETCH_DATA, data: JSON.parse(fetchedData)})
-		} 
-		else {localStorage.setItem('data', JSON.stringify(invoices))}
-	}, [])
+		const fetchedData = localStorage.getItem('data');
+		if (fetchedData) {
+			dispatch({
+				type: actionTypes.INVOICE_FETCH_DATA,
+				data: JSON.parse(fetchedData),
+			});
+		} else {
+			localStorage.setItem('data', JSON.stringify(invoices));
+		}
+	}, []);
 
 
     return (

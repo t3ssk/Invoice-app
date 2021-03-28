@@ -265,19 +265,38 @@ export interface invoiceAction {
 }
 export const InvoiceReducer = (state: [] | InvoiceState[] = initialState, action: invoiceAction) => {
     switch (action.type) {
-		case actionTypes.INVOICE_FETCH_DATA:
-			return action.data
-		case actionTypes.INVOICE_DELETE:
-			const newState = state.filter((invoice:InvoiceState)=> invoice.id !== action.id)
-			return newState
-		case actionTypes.INVOICE_MARK_PAID:
-			const paidState = state.map((invoice:InvoiceState) => {
-				if(invoice.id === action.id){invoice.status = "paid"}
-				return invoice
-			})
-			return paidState
-        default:
-            return state;
-    }
+			case actionTypes.INVOICE_FETCH_DATA:
+				return action.data;
+			case actionTypes.INVOICE_DELETE:
+				const newState = state.filter(
+					(invoice: InvoiceState) => invoice.id !== action.id
+				);
+				return newState;
+			case actionTypes.INVOICE_ADD_NEW_AS_PENDING:
+				const addedPendingInvoiceState = [action.data, ...state];
+				localStorage.setItem('data', JSON.stringify(addedPendingInvoiceState))
+				return addedPendingInvoiceState;
+			case actionTypes.INVOICE_EDIT:
+				const filteredInvoices = state.filter((invoice:InvoiceState)=> invoice.id !== action.id)
+				const addedDraftInvoiceState = [action.data, ...filteredInvoices];
+
+
+				localStorage.setItem(
+					'data',
+					JSON.stringify(addedDraftInvoiceState)
+				);
+				return addedDraftInvoiceState;
+
+			case actionTypes.INVOICE_MARK_PAID:
+				const paidState = state.map((invoice: InvoiceState) => {
+					if (invoice.id === action.id) {
+						invoice.status = 'paid';
+					}
+					return invoice;
+				});
+				return paidState;
+			default:
+				return state;
+		}
 
 };

@@ -9,7 +9,7 @@ import moon from '../../assets/icon-moon.svg'
 import sun from '../../assets/icon-sun.svg'
 import portrait from '../../assets/image-avatar.jpg'
 
-export const Navbar = () => {
+export const Navbar:React.FC = () => {
     const darkmode = useSelector((state: state) => state.darkmode);
     const dispatch = useDispatch()
     return (

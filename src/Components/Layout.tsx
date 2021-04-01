@@ -8,7 +8,7 @@ import actionTypes from '../store/actions';
 interface LayoutProps {
 	children: React.ReactNode;
 }
-export const Layout = (props:LayoutProps) => {
+export const Layout:React.FC<LayoutProps> = (props) => {
     const darkmode = useSelector((state: state) => state.darkmode);
 	const invoices = useSelector((state: state) => state.invoice);
 	const dispatch = useDispatch()

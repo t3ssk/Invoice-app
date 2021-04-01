@@ -7,7 +7,7 @@ import { Modal } from '../UI/Modal/Modal';
 import {InvoiceActiveSection} from './InvoiceActiveSection/InvoiceActiveSection'
 import { InvoiceInfo } from './InvoiceInfo/InvoiceInfo';
 
-export const SingleInvoice = () => {
+export const SingleInvoice:React.FC = () => {
     let {invoiceid} = useParams<{invoiceid:string}>()
     const isMobile = useMediaQuery({ query: '(max-device-width: 570px)' });
     const invoices = useSelector((state:state) => state.invoice!)

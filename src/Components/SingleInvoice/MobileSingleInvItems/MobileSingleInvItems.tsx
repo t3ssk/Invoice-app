@@ -6,7 +6,7 @@ import {singleInvoiceItemsProps} from '../SingleInvoiceItems/SingleInvoiceItems'
 import styles from '../SingleInvoiceItems/SingleInvoiceItems.module.scss'
 
 
-export const MobileSingleInvItems = ({items}: singleInvoiceItemsProps) => {
+export const MobileSingleInvItems:React.FC<singleInvoiceItemsProps> = ({items}) => {
      const darkmode = useSelector((state: state) => state.darkmode);
 			let total = 0;
 			let content = <></>;

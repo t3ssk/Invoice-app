@@ -13,10 +13,11 @@ interface invoiceProps {
 	status: string,
 	total: number
 }
-export const Invoice = (props:invoiceProps) => {
+
+
+export const Invoice:React.FC<invoiceProps> = (props) => {
     const darkmode = useSelector((state:state) => state.darkmode)
 	const date = getFormattedDateFromString(props.due)
-
 
     return (
 

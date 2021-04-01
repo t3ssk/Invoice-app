@@ -1,20 +1,28 @@
 import React from 'react'
 import { nanoid } from 'nanoid';
 import moment from 'moment';
+import { FormikProps } from 'formik';
 import {useDispatch, useSelector} from 'react-redux'
 import { state } from '../../..'
 import actionTypes from '../../../store/actions'
+import { initVals } from '../InsertDataLayout';
 import { ButtonTypeFour, ButtonTypeThree, ButtonTypeTwo } from '../../UI/Buttons/Buttons'
 import styles from './ButtonSection.module.scss'
 
-export const ButtonSection = (props: { formik: any }) => {
+interface buttonSectionProps {
+	formik: FormikProps<initVals>;
+}
+
+export const ButtonSection:React.FC<buttonSectionProps> = (props) => { 
 	const darkmode = useSelector((state: state) => state.darkmode);
 	const openDrawer = useSelector((state: state) => state.openDrawer!);
 	const dispatch = useDispatch();
 	const { setFieldValue } = props.formik;
+
 	const discardHandler = () => {
 		dispatch({ type: actionTypes.CLOSE_DRAWER_ALL });
 	};
+	
 	const clickHandler = (e: Event) => {
 		const target = e.target as HTMLElement;
 		const values= props.formik.values

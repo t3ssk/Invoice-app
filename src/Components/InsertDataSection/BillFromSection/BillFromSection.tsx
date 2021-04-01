@@ -1,9 +1,13 @@
 import React from 'react'
 import styles from './BillFromSection.module.scss'
+import {FormikProps} from 'formik'
 import { TextInput } from '../../UI/Inputs/Inputs';
+import {initVals} from '../InsertDataLayout'
 
-export const BillFromSection = (props: any) => {
-        
+interface BillFromProps {
+	formik: FormikProps<initVals>
+}
+export const BillFromSection: React.FC<BillFromProps> = (props) => {
 	return (
 		<div className={styles.Bill__To}>
 			

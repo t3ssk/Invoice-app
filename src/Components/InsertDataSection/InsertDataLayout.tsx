@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormik, Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import {useDispatch, useSelector} from 'react-redux'
 import { useTransition, animated } from 'react-spring';
 import {BillFromSection} from './BillFromSection/BillFromSection'
@@ -13,7 +13,8 @@ import { AdditionalInfo } from './AdditionalInfo/AdditionalInfo';
 import { TextInput } from '../UI/Inputs/Inputs';
 import { ItemList } from './ItemList/ItemList';
 import { InvoiceState } from '../../store/reducers/InvoiceReducer';
-interface initVals {
+
+export interface initVals {
 	senderAddress: {
 		street: string;
 		city: string;
@@ -29,7 +30,7 @@ interface initVals {
 	clientName: string;
 	clientEmail: string;
 	createdAt: string;
-	paymentDue:string;
+	paymentDue: string;
 	paymentTerms: string;
 	description: string;
 	total: number;
@@ -37,8 +38,10 @@ interface initVals {
 	id: string;
 	items: any[] | [];
 }
-export const InsertDataLayout = () => {
+
+export const InsertDataLayout: React.FC = () => {
     const dispatch = useDispatch()
+
     const darkmode = useSelector((state:state) => state.darkmode)
     const openDrawer = useSelector((state: state) => state.openDrawer!);
 	const invoices = useSelector((state:state)=>state.invoice)
@@ -48,11 +51,11 @@ export const InsertDataLayout = () => {
 			enter: { transform: 'translate3d(0%,0,0)', opacity: 1 },
 			leave: { transform: 'translate3d(-100%,0,0)', opacity: 0 },
 		});
+
     let content = <h1>New Invoice</h1>
     if(openDrawer.EditInvoice){
         content = <h1>Edit <span className={styles.Invoice__id}>{openDrawer.InvoiceId}</span></h1>
     }
-
 	let initVals: initVals = {
 		senderAddress: {
 			street: '',
@@ -81,7 +84,6 @@ export const InsertDataLayout = () => {
 	if (openDrawer.EditInvoice){
 		const thisInvoice = invoices!.filter((invoice:InvoiceState)=>invoice.id === openDrawer.InvoiceId)[0]
 		if(thisInvoice){
-			console.log(thisInvoice.senderAddress);
 		initVals = {
 			senderAddress: {
 				street: thisInvoice.senderAddress.street,
@@ -99,7 +101,7 @@ export const InsertDataLayout = () => {
 			},
 			createdAt: thisInvoice.createdAt,
 			paymentDue: thisInvoice.paymentDue,
-			paymentTerms: `Net ${thisInvoice.paymentTerms} Days`,
+			paymentTerms: `${thisInvoice.paymentTerms}`,
 			description: thisInvoice.description,
 			items: [...thisInvoice.items],
 			total: thisInvoice.total,

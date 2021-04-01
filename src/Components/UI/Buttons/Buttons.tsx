@@ -9,11 +9,11 @@ interface ButtonType {
 	children?: string;
 	onClick?: any;
 	type?: 'button' | 'submit' | 'reset' | undefined;
-	addNew?: any
+	addNew?: ()=>void
 }
 
 
-export const InvoiceButton = (props:ButtonType) => {
+export const InvoiceButton:React.FC<ButtonType> = (props) => {
 	const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
     return (
@@ -26,11 +26,10 @@ export const InvoiceButton = (props:ButtonType) => {
 		);
 }
 
-export const ButtonTypeTwo = (props: ButtonType) => {
-	
+export const ButtonTypeTwo: React.FC<ButtonType> = (props) => {
 	return (
 		<button
-			id="btn2"
+			id='btn2'
 			type={props.type}
 			className={styles.ButtonT2}
 			onClick={props.onClick}>
@@ -39,32 +38,32 @@ export const ButtonTypeTwo = (props: ButtonType) => {
 	);
 };
 
-export const ButtonTypeThree = (props:ButtonType) => {
+export const ButtonTypeThree: React.FC<ButtonType> = (props) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
-    return (
-			<button
-				className={!darkmode ? styles.ButtonT3Dark : styles.ButtonT3Light}
-				onClick={props.onClick}
-				type={props.type}>
-				{props.children}
-			</button>
-		);
-}
+	return (
+		<button
+			className={!darkmode ? styles.ButtonT3Dark : styles.ButtonT3Light}
+			onClick={props.onClick}
+			type={props.type}>
+			{props.children}
+		</button>
+	);
+};
 
-export const ButtonTypeFour = (props:ButtonType) => {
+export const ButtonTypeFour: React.FC<ButtonType> = (props) => {
 	const darkmode = useSelector((state: state) => state.darkmode);
-    return (
-			<button
-				id='btn4'
-				type={props.type}
-				className={darkmode ? styles.ButtonT4Dark : styles.ButtonT4Light}
-				onClick={props.onClick}>
-				{props.children}
-			</button>
-		);
-}
+	return (
+		<button
+			id='btn4'
+			type={props.type}
+			className={darkmode ? styles.ButtonT4Dark : styles.ButtonT4Light}
+			onClick={props.onClick}>
+			{props.children}
+		</button>
+	);
+};
 
-export const ButtonTypeFive= (props: ButtonType) => {
+export const ButtonTypeFive: React.FC<ButtonType> = (props) => {
 	return (
 		<button className={styles.ButtonT5} onClick={props.onClick}>
 			{props.children}
@@ -72,10 +71,10 @@ export const ButtonTypeFive= (props: ButtonType) => {
 	);
 };
 
-export const AddNewItemBtn = (props: ButtonType) => {
-    return (
-			<button className={styles.AddNewBtn} onClick={props.addNew} type="button">
-				+ Add New Item
-			</button>
-		);
-}
+export const AddNewItemBtn: React.FC<ButtonType> = (props) => {
+	return (
+		<button className={styles.AddNewBtn} onClick={props.addNew} type='button'>
+			+ Add New Item
+		</button>
+	);
+};

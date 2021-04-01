@@ -11,8 +11,9 @@ interface InvoiceHeaderProps {
 	numOfInvoices: number
 }
 
-export const InvoicesHeader = (props:InvoiceHeaderProps) => {
-    const [showOpts, setShowOpts] = React.useState(false)
+export const InvoicesHeader:React.FC<InvoiceHeaderProps> = (props) => {
+
+    const [showOpts, setShowOpts] = React.useState<boolean>(false)
     const darkmode = useSelector((state:state) => state.darkmode)
     const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
 	const dispatch = useDispatch()

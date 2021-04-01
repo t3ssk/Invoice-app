@@ -4,7 +4,7 @@ import { state } from '../../..'
 import illustration from '../../../assets/illustration-empty.svg'
 import styles from './EmptyState.module.scss'
 
-export const EmptyState = () => {
+export const EmptyState:React.FC = () => {
     const darkmode = useSelector((state:state) => state.darkmode)
     return (
 			<div className={`${styles.Empty_State} ${darkmode? styles.darkmode : undefined}`}>

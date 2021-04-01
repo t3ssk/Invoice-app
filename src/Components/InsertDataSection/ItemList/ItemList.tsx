@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react'
-import { FieldArray, useFormikContext } from 'formik';
+import { FieldArray, FormikProps, useFormikContext } from 'formik';
 import {nanoid} from 'nanoid'
 import { AddNewItemBtn } from '../../UI/Buttons/Buttons'
 import styles from './ItemList.module.scss'
 import { SingleItem } from './SingleItem'
+import { initVals } from '../InsertDataLayout';
 
 interface ItemListProps {
-	formik: any;
+	formik: FormikProps<initVals>;
 	error?: undefined | string | string[]
 }
 export const ItemList:React.FC<ItemListProps> = (props) => {
 
 	const { values } = useFormikContext<any>();
-	
 
     return (
 			<div className={styles.Items_List}>

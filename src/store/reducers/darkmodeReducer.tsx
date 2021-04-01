@@ -1,4 +1,8 @@
-import actionTypes, {darkmodeSwitchType} from '../actions/index'
+import actionTypes from '../actions/index'
+
+export interface darkmodeSwitchType {
+	type: string;
+}
 
 export const darkmodeReducer = (state = false, action: darkmodeSwitchType) => {
     switch (action.type){

@@ -1,4 +1,36 @@
 import actionTypes from '../actions/'
+type address = {
+	city: string;
+	country: string;
+	postCode: string;
+	street: string;
+};
+export interface item {
+	name: string;
+	price: number;
+	quantity: number;
+	total: number;
+}
+export interface InvoiceState {
+	id: string;
+	paymentDue: string;
+	paymentTerms: number;
+	status: 'draft' | 'pending' | 'paid';
+	clientAddress: address;
+	clientEmail: string;
+	clientName: string;
+	createdAt: string;
+	description: string;
+	total: number;
+	items: item[];
+	senderAddress: address;
+}
+
+export interface invoiceAction {
+	type: string;
+	data?: InvoiceState;
+	id?: string;
+}
 
 const initialState: InvoiceState[] = [
 	{
@@ -232,37 +264,7 @@ const initialState: InvoiceState[] = [
 	},
 ];
 
-type address = {city: string, 
-        country: string, 
-        postCode: string, 
-        street: string}
-export interface item {
-	name: string;
-	price: number;
-	quantity: number;
-	total: number;
-}
-export interface InvoiceState {
-	id: string;
-	paymentDue: string;
-	paymentTerms: number;
-	status: 'draft' | 'pending' | 'paid';
-	clientAddress: address;
-	clientEmail: string;
-	clientName: string;
-	createdAt: string;
-	description: string;
-	total: number;
-	items: item[];
-	senderAddress: address;
-};
 
-
-export interface invoiceAction {
-    type: string
-    data?: InvoiceState
-	id?: string
-}
 export const InvoiceReducer = (state: [] | InvoiceState[] = initialState, action: invoiceAction) => {
     switch (action.type) {
 			case actionTypes.INVOICE_FETCH_DATA:

@@ -11,11 +11,12 @@ import styles from './InvoiceActiveSection.module.scss'
 import arrowLeft from '../../../assets/icon-arrow-left.svg'
 import { Link } from 'react-router-dom';
 import actionTypes from '../../../store/actions';
+
 interface SingleInvoiceProps {
     invoiceid: string,
     children?: React.ReactNode
 }
-export const InvoiceActiveSection = (props: SingleInvoiceProps) => {
+export const InvoiceActiveSection:React.FC<SingleInvoiceProps> = (props) => {
     const darkmode = useSelector((state:state) => state.darkmode)
 	const invoices = useSelector((state:state) => state.invoice)
     const isMobile = useMediaQuery({query: '(max-device-width: 570px)'});

@@ -15,9 +15,6 @@ const actionTypes = {
 	CLOSE_MODAL: 'CLOSE_MODAL',
 };
 
-export interface darkmodeSwitchType {
-    type: string
-}
 
 
 

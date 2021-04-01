@@ -1,7 +1,5 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import { useHistory } from 'react-router';
-import 'firebase/database'
 import {useMediaQuery} from 'react-responsive'
 import { state } from '../../..';
 import {
@@ -26,16 +24,12 @@ export const InvoiceActiveSection = (props: SingleInvoiceProps) => {
 	const singleInvoice = invoices!.find(
 		(invoice) => invoice.id === props.invoiceid
 	)!;
-	const history = useHistory()
     
-	const deleteHandler = (id: string):void => {
-		dispatch({ type: actionTypes.INVOICE_DELETE, id });
-		localStorage.setItem('data', JSON.stringify(invoices))
-		history.push('/')
+	const deleteHandler = ():void => {
+		dispatch({ type: actionTypes.OPEN_MODAL});
 	}
 	const markPaidHandler = (id:string):void => {
 		dispatch({type: actionTypes.INVOICE_MARK_PAID, id})
-		localStorage.setItem('data', JSON.stringify(invoices));
 	}
 	
 	return (!singleInvoice?
@@ -72,7 +66,7 @@ export const InvoiceActiveSection = (props: SingleInvoiceProps) => {
 						}>
 						Edit
 					</ButtonTypeThree>
-					<ButtonTypeFive onClick={() => deleteHandler(props.invoiceid)}>
+					<ButtonTypeFive onClick={() => deleteHandler()}>
 						Delete
 					</ButtonTypeFive>
 					{singleInvoice.status !== 'paid' && (

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik';
-import { nanoid } from 'nanoid';
-import moment from 'moment';
+
 import {useDispatch, useSelector} from 'react-redux'
 import { useTransition, animated } from 'react-spring';
 import {BillFromSection} from './BillFromSection/BillFromSection'
@@ -15,7 +14,30 @@ import { AdditionalInfo } from './AdditionalInfo/AdditionalInfo';
 import { TextInput } from '../UI/Inputs/Inputs';
 import { ItemList } from './ItemList/ItemList';
 import { InvoiceState } from '../../store/reducers/InvoiceReducer';
-
+interface initVals {
+	senderAddress: {
+		street: string;
+		city: string;
+		postCode: string;
+		country: string;
+	};
+	clientAddress: {
+		street: string;
+		city: string;
+		postCode: string;
+		country: string;
+	};
+	clientName: string;
+	clientEmail: string;
+	createdAt: string;
+	paymentDue:string;
+	paymentTerms: string;
+	description: string;
+	total: number;
+	status: 'draft' | 'pending' | 'paid';
+	id: string;
+	items: any[] | [];
+}
 export const InsertDataLayout = () => {
     const dispatch = useDispatch()
     const darkmode = useSelector((state:state) => state.darkmode)
@@ -32,7 +54,7 @@ export const InsertDataLayout = () => {
         content = <h1>Edit <span className={styles.Invoice__id}>{openDrawer.InvoiceId}</span></h1>
     }
 
-	let initVals = {
+	let initVals: initVals = {
 		senderAddress: {
 			street: '',
 			city: '',
@@ -52,16 +74,10 @@ export const InsertDataLayout = () => {
 		paymentTerms: 'Net 30 Days',
 		description: '',
 		items: [
-			{
-				name: '',
-				price: 0,
-				total: 0,
-				quantity: 0,
-			},
 		],
 		total: 0,
 		status: 'draft',
-		id: ''
+		id: '',
 	};
 
 	if (openDrawer.EditInvoice){
@@ -96,27 +112,11 @@ export const InsertDataLayout = () => {
 		const formik = useFormik({
 			initialValues: initVals,
 			onSubmit: (values: any) => {
-				let calctotal = 0;
-				values.items.forEach(
-					(item: any) => (calctotal = calctotal + item.total)
-				);
-
-				const endVals = {
-					...values,
-					id: nanoid(6),
-					createdAt: moment(Date.now()).format('YYYY-MM-DD'),
-					paymentTerms: Number(values.paymentTerms.slice(4, 6)),
-					total: calctotal,
-				};
-				dispatch({
-					type: actionTypes.INVOICE_ADD_NEW_AS_PENDING,
-					data: endVals,
-				});
+				localStorage.setItem('data', JSON.stringify(invoices));
 				dispatch({ type: actionTypes.CLOSE_DRAWER_ALL });
 			},
 			validationSchema: validationSchema,
 		});
-		console.log(formik)
     return (
 			<>
 				<div

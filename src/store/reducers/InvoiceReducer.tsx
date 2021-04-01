@@ -271,6 +271,7 @@ export const InvoiceReducer = (state: [] | InvoiceState[] = initialState, action
 				const newState = state.filter(
 					(invoice: InvoiceState) => invoice.id !== action.id
 				);
+				localStorage.setItem('data', JSON.stringify(newState));
 				return newState;
 			case actionTypes.INVOICE_ADD_NEW_AS_PENDING:
 				const addedPendingInvoiceState = [action.data, ...state];
@@ -279,8 +280,6 @@ export const InvoiceReducer = (state: [] | InvoiceState[] = initialState, action
 			case actionTypes.INVOICE_EDIT:
 				const filteredInvoices = state.filter((invoice:InvoiceState)=> invoice.id !== action.id)
 				const addedDraftInvoiceState = [action.data, ...filteredInvoices];
-
-
 				localStorage.setItem(
 					'data',
 					JSON.stringify(addedDraftInvoiceState)
@@ -294,6 +293,8 @@ export const InvoiceReducer = (state: [] | InvoiceState[] = initialState, action
 					}
 					return invoice;
 				});
+
+				localStorage.setItem('data', JSON.stringify(paidState));
 				return paidState;
 			default:
 				return state;

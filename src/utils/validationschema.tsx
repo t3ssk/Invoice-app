@@ -34,8 +34,8 @@ export const validationSchema = Yup.object().shape({
 			.required('This field is required'),
 		postCode: Yup.string()
 			.trim()
-			.min(5, 'Is this really your post code name? Seems too short...')
-			.max(6, 'Is this really your post code name? Seems too long.')
+			.min(5, 'Is this really your post code? Seems too short...')
+			.max(7, 'Is this really your post code? Seems too long.')
 			.required('This field is required'),
 		country: Yup.string()
 			.trim()

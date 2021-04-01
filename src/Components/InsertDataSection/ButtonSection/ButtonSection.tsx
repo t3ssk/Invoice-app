@@ -1,4 +1,6 @@
 import React from 'react'
+import { nanoid } from 'nanoid';
+import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux'
 import { state } from '../../..'
 import actionTypes from '../../../store/actions'
@@ -15,19 +17,53 @@ export const ButtonSection = (props: { formik: any }) => {
 	};
 	const clickHandler = (e: Event) => {
 		const target = e.target as HTMLElement;
-		console.log(target.id)
+		const values= props.formik.values
 		if(openDrawer.NewInvoice){
 		if (target.id === 'btn4') {
 			setFieldValue('status', 'draft');
+				let calctotal = 0;
+				values.items.forEach(
+					(item: any) => (calctotal = calctotal + item.total)
+				);
+
+				const endVals = {
+					...values,
+					id: nanoid(6),
+					createdAt: moment(Date.now()).format('YYYY-MM-DD'),
+					paymentTerms: Number(values.paymentTerms.slice(4, 6)),
+					total: calctotal,
+				};
+				dispatch({
+					type: actionTypes.INVOICE_ADD_NEW_AS_PENDING,
+					data: endVals,
+				});
 			props.formik.handleSubmit();
 		}
 		if (target.id === 'btn2') {
-			setFieldValue('status', 'pending');
+				let calctotal = 0;
+				values.items.forEach(
+					(item: any) => (calctotal = calctotal + item.total)
+				);
+
+				const endVals = {
+					...values,
+					id: nanoid(6),
+					createdAt: moment(Date.now()).format('YYYY-MM-DD'),
+					paymentTerms: Number(values.paymentTerms.slice(4, 6)),
+					total: calctotal,
+					status: 'pending'
+				};
+				dispatch({
+					type: actionTypes.INVOICE_ADD_NEW_AS_PENDING,
+					data: endVals,
+				});
 			props.formik.handleSubmit();
 		}
 		}
 		if(openDrawer.EditInvoice){
-			
+			setFieldValue('status', 'pending');
+			dispatch({type: actionTypes.INVOICE_EDIT, id: openDrawer.InvoiceId, data: {...values, status: 'pending'}})
+			props.formik.handleSubmit();
 		}
 	};
 

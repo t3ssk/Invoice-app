@@ -39,7 +39,7 @@ export const ItemList:React.FC<ItemListProps> = (props) => {
 							<SingleItem
 								formik={props.formik}
 								key={nanoid()}
-								index={itemInputs.length}
+								index={(itemInputs.length)}
 								onClick={handleRemove}
 							/>
 						),

@@ -9,19 +9,22 @@ import { darkmodeReducer } from './store/reducers/darkmodeReducer';
 import { InvoiceReducer, InvoiceState } from './store/reducers/InvoiceReducer';
 import { filterReducer, filterTerms } from './store/reducers/filterReducer';
 import { openDrawer, openDrawerReducer } from './store/reducers/openDrawerReducer';
+import { modalReducer } from './store/reducers/modalReducer';
 
 export interface state {
 	darkmode?: boolean;
 	invoice?: [] | InvoiceState[];
 	filterTerm?: [] | filterTerms[];
-  openDrawer?: openDrawer
+  openDrawer?: openDrawer;
+  showModal?: boolean
 }
 
 const rootReducer = combineReducers({
   darkmode: darkmodeReducer,
   invoice: InvoiceReducer,
   filterTerm: filterReducer,
-  openDrawer: openDrawerReducer
+  openDrawer: openDrawerReducer,
+  showModal: modalReducer
 })
 
 

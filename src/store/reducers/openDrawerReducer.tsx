@@ -12,7 +12,7 @@ interface action {
 
 
 const initialState = {
-    NewInvoice: true,
+    NewInvoice: false,
     EditInvoice: false,
 	InvoiceId: null
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { useFormik } from 'formik';
-
+import { useFormik, Formik, Form } from 'formik';
 import {useDispatch, useSelector} from 'react-redux'
 import { useTransition, animated } from 'react-spring';
 import {BillFromSection} from './BillFromSection/BillFromSection'
@@ -73,8 +72,7 @@ export const InsertDataLayout = () => {
 		paymentDue: '',
 		paymentTerms: 'Net 30 Days',
 		description: '',
-		items: [
-		],
+		items: [{ name: '', quantity: 0, price: 0, total: 0 }],
 		total: 0,
 		status: 'draft',
 		id: '',
@@ -109,14 +107,6 @@ export const InsertDataLayout = () => {
 			id: thisInvoice.id
 		};}
 	}
-		const formik = useFormik({
-			initialValues: initVals,
-			onSubmit: (values: any) => {
-				localStorage.setItem('data', JSON.stringify(invoices));
-				dispatch({ type: actionTypes.CLOSE_DRAWER_ALL });
-			},
-			validationSchema: validationSchema,
-		});
     return (
 			<>
 				<div
@@ -134,19 +124,27 @@ export const InsertDataLayout = () => {
 									darkmode ? styles.Darkmode : null
 								}`}>
 								{content}
-								<form onSubmit={formik.handleSubmit}>
-									<BillFromSection formik={formik} />
-									<BillToSection formik={formik} />
-									<AdditionalInfo formik={formik} />
-									<div className={styles.Description}>
-										<TextInput formik={formik} name='description'>
-											Project Description
-										</TextInput>
-									</div>
-									<ItemList formik={formik}/>
-									
-									<ButtonSection formik={formik}/>
-								</form>
+								<Formik
+									initialValues={initVals} 
+									onSubmit={(values: initVals) => {
+										localStorage.setItem('data', JSON.stringify(invoices));
+										dispatch({ type: actionTypes.CLOSE_DRAWER_ALL });
+									}}
+									validationSchema={validationSchema}>{
+										formik=>(<form onSubmit={formik.handleSubmit}>
+										<BillFromSection formik={formik} />
+										<BillToSection formik={formik} />
+										<AdditionalInfo formik={formik} />
+										<div className={styles.Description}>
+											<TextInput formik={formik} name='description'>
+												Project Description
+											</TextInput>
+										</div>
+										<ItemList formik={formik} />
+
+										<ButtonSection formik={formik} />
+									</form>)}
+								</Formik>
 							</animated.div>
 						)
 				)}

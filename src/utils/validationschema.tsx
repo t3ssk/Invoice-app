@@ -80,4 +80,15 @@ export const validationSchema = Yup.object().shape({
 			)
 			.required('This field is required'),
 	}),
+	items: Yup.array().of(
+		Yup.object().shape({
+			name: Yup.string()
+				.trim()
+				.min(4, 'Too short')
+				.max(50, 'Too long')
+				.required('Required'),
+			quantity: Yup.number().min(1, 'Required').required('Required'),
+			price: Yup.number().min(1, 'Required').required('Required'),
+		})
+	),
 });

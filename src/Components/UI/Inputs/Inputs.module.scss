@@ -103,8 +103,9 @@
 
 .error, .errorDate{
     color: $muted-red;
-    padding-top: 5px;
+    padding: 5px 0 20px;
     font-weight: bold;
+    position: absolute;
 }
 
 .errorDate{

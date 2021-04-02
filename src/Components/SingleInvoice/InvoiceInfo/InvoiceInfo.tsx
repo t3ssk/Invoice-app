@@ -13,7 +13,7 @@ interface SingleInvoiceProps {
 
 export const InvoiceInfo:React.FC<SingleInvoiceProps> = ({invoice}) => {
     const darkmode = useSelector((state:state) => state.darkmode)
-    const isMobile = useMediaQuery({query: `(max-device-width: 570px)`})
+    const isMobile = useMediaQuery({query: `(max-device-width: 620px)`})
     let content =  <h1>Loading...</h1>
     if(invoice){
         content = (

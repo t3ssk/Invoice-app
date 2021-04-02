@@ -19,7 +19,7 @@ interface SingleInvoiceProps {
 export const InvoiceActiveSection:React.FC<SingleInvoiceProps> = (props) => {
     const darkmode = useSelector((state:state) => state.darkmode)
 	const invoices = useSelector((state:state) => state.invoice)
-    const isMobile = useMediaQuery({query: '(max-device-width: 570px)'});
+    const isMobile = useMediaQuery({query: '(max-device-width: 620px)'});
 	const dispatch = useDispatch()
 
 	const singleInvoice = invoices!.find(

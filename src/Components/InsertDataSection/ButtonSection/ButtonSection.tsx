@@ -61,17 +61,27 @@ export const ButtonSection:React.FC<buttonSectionProps> = (props) => {
 					total: calctotal,
 					status: 'pending'
 				};
-				dispatch({
-					type: actionTypes.INVOICE_ADD_NEW_AS_PENDING,
-					data: endVals,
-				});
-			props.formik.handleSubmit();
+				if (endVals.items[endVals.items.length-1].total !== 0){
+					dispatch({
+						type: actionTypes.INVOICE_ADD_NEW_AS_PENDING,
+						data: endVals,
+					});
+			props.formik.handleSubmit();} else {alert("Can't submit empty data, please either delete or add invoice item")}
 		}
 		}
 		if(openDrawer.EditInvoice){
-			setFieldValue('status', 'pending');
-			dispatch({type: actionTypes.INVOICE_EDIT, id: openDrawer.InvoiceId, data: {...values, status: 'pending'}})
-			props.formik.handleSubmit();
+			if (values.items[values.items.length - 1].total !== 0) {
+				dispatch({
+					type: actionTypes.INVOICE_EDIT,
+					id: openDrawer.InvoiceId,
+					data: { ...values },
+				});
+				props.formik.handleSubmit();
+			} else {
+				alert(
+					"Can't submit empty data, please either delete or add invoice item"
+				);
+			}
 		}
 	};
 

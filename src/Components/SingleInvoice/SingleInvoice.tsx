@@ -9,7 +9,7 @@ import { InvoiceInfo } from './InvoiceInfo/InvoiceInfo';
 
 export const SingleInvoice:React.FC = () => {
     let {invoiceid} = useParams<{invoiceid:string}>()
-    const isMobile = useMediaQuery({ query: '(max-device-width: 570px)' });
+    const isMobile = useMediaQuery({ query: '(max-device-width: 620px)' });
     const invoices = useSelector((state:state) => state.invoice!)
     const singleInvoice = invoices.find(invoice=>invoice.id === invoiceid)!
 	const modal = useSelector((state: state) => state.showModal);

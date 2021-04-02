@@ -14,6 +14,9 @@
         line-height: 1;
     }
 }
+.Invoice__info_email{
+    margin-left: -10%;
+}
 .Invoice__ident__container{
     display: flex;
     width: 100%;
@@ -56,9 +59,22 @@
         color: #DFE3FA;
     }
 }
-
+@media screen and (max-width: 1140px){
+   .Invoice__info_email{
+    margin-left: -15%;
+}
+}
 @media screen and (max-width: 1024px){
    .Invoice__info{ margin: 30px auto 80px;}
+}
+
+@media screen and (max-width: 850px){
+    .Invoice__info_billing{
+        margin-left: -10%;
+    }
+   .Invoice__info_email{
+    margin-left: -20%;
+}
 }
 @media screen and (max-width: 800px){
    .Invoice__info__container{
@@ -89,4 +105,10 @@
    .Invoice__info_email{
        flex-basis: 100%;
    }
+       .Invoice__info_billing{
+        margin-left: 0%;
+    }
+   .Invoice__info_email{
+    margin-left:0;
+}
 }

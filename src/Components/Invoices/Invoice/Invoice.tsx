@@ -28,7 +28,7 @@ export const Invoice:React.FC<invoiceProps> = (props) => {
 				<h3>{props.id}</h3>
 				<p className={styles.Due}>Due {date}</p>
 				<p className={styles.Name}>{props.name}</p>
-				<h2>£ {props.total}</h2>
+				<h2>£ {props.total.toFixed(2)}</h2>
 				<p className={`${styles.status} ${styles[props.status]}`}>
 					{props.status}
 				</p>

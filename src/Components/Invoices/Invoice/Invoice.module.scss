@@ -105,7 +105,7 @@ a{
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 650px){
     .Invoice_info{
         display: grid;
         grid-column-gap: 10px;
@@ -133,4 +133,10 @@ a{
         box-shadow: 0 4px 4px $shadows-darkmode;
     }
 
+}
+@media screen and (max-width: 420px){
+.Invoice_info{
+        display: grid;
+        grid-column-gap: 10px;
+        width: 90%;}
 }

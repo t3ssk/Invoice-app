@@ -83,9 +83,10 @@
 
     .Status_container{
         position: relative;
-        left: -6%;
+        left: -7%;
         background-color: white;
-        width: 80vw;
+        width: 85vw;
+        box-sizing: border-box;
         border-radius: 8px;
         padding: 20px;
         margin: 15px auto;

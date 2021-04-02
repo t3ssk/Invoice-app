@@ -81,7 +81,7 @@ export const ButtonSection:React.FC<buttonSectionProps> = (props) => {
 				className={`${styles.Buttons__choice} ${
 					openDrawer.EditInvoice ? styles.Edit : undefined
 				} ${darkmode ? styles.Darkmode : undefined}`}>
-				<ButtonTypeThree onClick={() => discardHandler}>
+				<ButtonTypeThree type="button" onClick={discardHandler}>
 					{openDrawer.NewInvoice ? 'Discard' : 'Cancel'}
 				</ButtonTypeThree>
 				<div>

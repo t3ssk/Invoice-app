@@ -15,7 +15,7 @@ export const InvoicesHeader:React.FC<InvoiceHeaderProps> = (props) => {
 
     const [showOpts, setShowOpts] = React.useState<boolean>(false)
     const darkmode = useSelector((state:state) => state.darkmode)
-    const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 	const dispatch = useDispatch()
 
 	let invoiceNumText = 'No invoices'

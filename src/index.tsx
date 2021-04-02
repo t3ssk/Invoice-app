@@ -33,7 +33,7 @@ const store = createStore(
 
 ReactDOM.render(
 <Provider store={store}>
-  <Router>
+  <Router basename='/'>
      <App />
   </Router>  
 </Provider>,document.getElementById('root')

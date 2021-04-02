@@ -14,7 +14,7 @@ interface ButtonType {
 
 
 export const InvoiceButton:React.FC<ButtonType> = (props) => {
-	const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+	const isMobile = useMediaQuery({ query: '(max-width: 450px)' });
 
     return (
 			<button className={styles.InvoiceButton} onClick={props.onClick}>
